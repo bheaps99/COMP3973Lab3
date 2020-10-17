@@ -25,8 +25,10 @@ namespace MVClab.Controllers
 
         public IActionResult Index()
         {
-            string url = HttpContext.Request.HttpContext.ToString();
-            string newPath = Path.GetFullPath(Path.Combine(url,@"..\TextFiles\"));
+            //string url = HttpContext.Request.HttpContext.ToString();
+            //string url = HttpContext.Request.Host
+            //string newPath = Path.GetFullPath(Path.Combine(url,@"..\TextFiles\"));
+            string newPath = Path.GetFullPath("https://comp3973bhlab3.azurewebsites.net/Files");
             string[] fileswDir = Directory.GetFiles(newPath);
             TextFile[] files = new TextFile[fileswDir.Length];
 
@@ -43,8 +45,9 @@ namespace MVClab.Controllers
 
         public IActionResult content(string id) //content lower case on purpose, Content(string ..) conflicts
         {
-            string wwwroot = _env.WebRootPath;
-            string newPath = Path.GetFullPath(Path.Combine(wwwroot,@"..\TextFiles\",@id+".txt"));
+            //string wwwroot = _env.WebRootPath;
+            //string newPath = Path.GetFullPath(Path.Combine(wwwroot,@"..\TextFiles\",@id+".txt"));
+                        string newPath = Path.GetFullPath(Path.Combine("https://comp3973bhlab3.azurewebsites.net/Files",@id+".txt"));
             string content = System.IO.File.ReadAllText(@newPath);
             string[] contentArray = {content, "a"}; //need to pass array
 
