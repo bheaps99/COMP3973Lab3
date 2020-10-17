@@ -26,7 +26,7 @@ namespace MVClab.Controllers
         {
             string wwwroot = _env.WebRootPath;
             string newPath = Path.GetFullPath("D:/home/site/TextFiles/");
-            string[] fileswDir = Directory.GetFiles(newPath);
+            string[] fileswDir = Directory.GetFiles("D:/home/site/TextFiles/");
             TextFile[] files = new TextFile[fileswDir.Length];
 
             for(int i=0; i < fileswDir.Length; i++)
