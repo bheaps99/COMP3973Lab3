@@ -27,7 +27,7 @@ namespace MVClab.Controllers
         {
             string wwwroot = _env.WebRootPath;
             //string newPath = Path.GetFullPath("D:/home/site/TextFiles/");
-            bool found= System.IO.File.Exists("/home/site/TextFiles/File1.txt");
+            bool found= System.IO.File.Exists("D:\\home\\site\\TextFiles\\File1.txt");
             //string[] fileswDir = Directory.GetFiles("D:/home/site/TextFiles/");
             //TextFile[] files = new TextFile[fileswDir.Length];
 
