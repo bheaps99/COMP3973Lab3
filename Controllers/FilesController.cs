@@ -9,7 +9,6 @@ using MVClab.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 
-
 namespace MVClab.Controllers
 {
     public class FilesController : Controller
@@ -26,17 +25,16 @@ namespace MVClab.Controllers
         public IActionResult Index()
         {
             string wwwroot = _env.WebRootPath;
-            //string newPath = Path.GetFullPath("D:/home/site/TextFiles/");
-            bool found= System.IO.File.Exists("D:\\home\\site\\TextFiles\\File1.txt");
-            //string[] fileswDir = Directory.GetFiles("D:/home/site/TextFiles/");
-            //TextFile[] files = new TextFile[fileswDir.Length];
+            string newPath = Path.GetFullPath(Path.Combine(wwwroot,@"../TextFiles/"));
+            string[] fileswDir = Directory.GetFiles(newPath);
+            TextFile[] files = new TextFile[fileswDir.Length];
 
-            //for(int i=0; i < fileswDir.Length; i++)
-            //{
-                //string result = Path.GetFileName(fileswDir[i]);
-                //files[i]=new TextFile {file = result, name = result.Substring(0,result.Length-4)};
-            //}
-            string[] files = {found? "YES":"NO", "a"};
+            for(int i=0; i < fileswDir.Length; i++)
+            {
+                string result = Path.GetFileName(fileswDir[i]);
+                files[i]=new TextFile {file = result, name = result.Substring(0,result.Length-4)};
+            }
+
             ViewBag.title = "File List";
 
             return View(files);
@@ -44,9 +42,8 @@ namespace MVClab.Controllers
 
         public IActionResult content(string id) //content lower case on purpose, Content(string ..) conflicts
         {
-            string wwwroot = _env.ContentRootPath;
-            //string newPath = Path.GetFullPath(Path.Combine(wwwroot,@"TextFiles/",@id+".txt"));
-            string newPath = Path.GetFullPath("D:/home/site/TextFiles/"+@id);
+            string wwwroot = _env.WebRootPath;
+            string newPath = Path.GetFullPath(Path.Combine(wwwroot,@"../TextFiles/",@id+".txt"));
             string content = System.IO.File.ReadAllText(@newPath);
             string[] contentArray = {content, "a"}; //need to pass array
 
