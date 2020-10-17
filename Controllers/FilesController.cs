@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using MVClab.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using System.Net;
 
 namespace MVClab.Controllers
 {
@@ -24,8 +25,8 @@ namespace MVClab.Controllers
 
         public IActionResult Index()
         {
-            string wwwroot = _env.WebRootPath;
-            string newPath = Path.GetFullPath(Path.Combine(wwwroot,@"..\TextFiles\"));
+            string url = HttpContext.Request.HttpContext.ToString();
+            string newPath = Path.GetFullPath(Path.Combine(url,@"..\TextFiles\"));
             string[] fileswDir = Directory.GetFiles(newPath);
             TextFile[] files = new TextFile[fileswDir.Length];
 
