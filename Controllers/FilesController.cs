@@ -25,16 +25,17 @@ namespace MVClab.Controllers
         public IActionResult Index()
         {
             string wwwroot = _env.WebRootPath;
-            string newPath = Path.GetFullPath(Path.Combine(wwwroot,@"../TextFiles/"));
-            string[] fileswDir = Directory.GetFiles(newPath);
-            TextFile[] files = new TextFile[fileswDir.Length];
+            //string newPath = Path.GetFullPath(Path.Combine(wwwroot,@"../TextFiles/"));
+            //string[] fileswDir = Directory.GetFiles(newPath);
+            //TextFile[] files = new TextFile[fileswDir.Length];
 
-            for(int i=0; i < fileswDir.Length; i++)
-            {
-                string result = Path.GetFileName(fileswDir[i]);
-                files[i]=new TextFile {file = result, name = result.Substring(0,result.Length-4)};
-            }
-
+            //for(int i=0; i < fileswDir.Length; i++)
+            //{
+                //string result = Path.GetFileName(fileswDir[i]);
+                //files[i]=new TextFile {file = result, name = result.Substring(0,result.Length-4)};
+            //}
+            bool found = System.IO.File.Exists(Path.Combine(wwwroot,@"../css/site.css"));
+            string[] files = {found? "YES":"NO", "b"};
             ViewBag.title = "File List";
 
             return View(files);
