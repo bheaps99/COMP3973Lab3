@@ -1,12 +1,6 @@
-@model TextFile[]
-
-<h2><u>@ViewData["Title"]</u></h2>
-
-<ul>
-@foreach( var item in @Model) {
+@model string[]
     
-    <li><a asp-controller="Files"
-    asp-action="Content"
-    asp-route-id="@item.name">@item.file</a></li>
-}
-</ul>
+@Model[0]
+<br>
+<br>
+@Model[1]

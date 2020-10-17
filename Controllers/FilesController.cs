@@ -9,6 +9,7 @@ using MVClab.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 
+
 namespace MVClab.Controllers
 {
     public class FilesController : Controller
@@ -26,15 +27,16 @@ namespace MVClab.Controllers
         {
             string wwwroot = _env.WebRootPath;
             //string newPath = Path.GetFullPath("D:/home/site/TextFiles/");
-            string[] fileswDir = Directory.GetFiles("D:/home/site/TextFiles/");
-            TextFile[] files = new TextFile[fileswDir.Length];
+            bool found= System.IO.File.Exists("/home/site/TextFiles/File1.txt");
+            //string[] fileswDir = Directory.GetFiles("D:/home/site/TextFiles/");
+            //TextFile[] files = new TextFile[fileswDir.Length];
 
-            for(int i=0; i < fileswDir.Length; i++)
-            {
-                string result = Path.GetFileName(fileswDir[i]);
-                files[i]=new TextFile {file = result, name = result.Substring(0,result.Length-4)};
-            }
-
+            //for(int i=0; i < fileswDir.Length; i++)
+            //{
+                //string result = Path.GetFileName(fileswDir[i]);
+                //files[i]=new TextFile {file = result, name = result.Substring(0,result.Length-4)};
+            //}
+            string[] files = {found? "YES":"NO", "a"};
             ViewBag.title = "File List";
 
             return View(files);
