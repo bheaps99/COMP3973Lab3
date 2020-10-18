@@ -35,7 +35,7 @@ namespace MVClab.Controllers
                 //files[i]=new TextFile {file = result, name = result.Substring(0,result.Length-4)};
             //}
             bool found = System.IO.File.Exists(Path.Combine(wwwroot,@"/css/site.css"));
-            string[] files = {found? "YES":Path.Combine(wwwroot,@"/css/site.css"), "b"};
+            string[] files = {found? "YES":Path.Combine(wwwroot,@"/css/site.css"), wwwroot};
             ViewBag.title = "File List";
 
             return View(files);
